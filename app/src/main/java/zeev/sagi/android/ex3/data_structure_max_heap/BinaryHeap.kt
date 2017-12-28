@@ -1,7 +1,8 @@
+@file:Suppress("PackageName")
+
 package zeev.sagi.android.ex3.data_structure_max_heap
 
 import zeev.sagi.android.ex3.dataclass.contact
-import java.util.Arrays
 import java.util.NoSuchElementException
 
 @Suppress("unused", "MemberVisibilityCanPrivate")

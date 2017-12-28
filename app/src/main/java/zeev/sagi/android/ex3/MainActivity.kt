@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var act:MainActivity // kotlin has some bugs with .getActivity
     }
 
+    @Suppress("PrivatePropertyName")
     private var premission_array:Vector<String> = Vector()
 
     override fun onCreate(savedInstanceState: Bundle?) {

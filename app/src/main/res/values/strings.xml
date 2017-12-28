@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">ex3</string>
+    <string name="app_name">Quota your bff</string>
 
     <!-- Main Activity -->
     <string name="title_activity_main">BFF Application - will remove this top bar</string>
     <string name="tab_text_1">My BFF</string>
     <string name="tab_text_2">Random quote</string>
-
+    <string name="insufficnet_premissions">Insufficent premissions</string>
 
     <!-- quote handling URL and data -->
     <string name="random_quote_url">https://talaikis.com/api/quotes/random/</string>
@@ -27,6 +27,7 @@
     <string name="URL_response_not_200">Unable to get response from URL</string>
     <string name="parsing_error">Unable to parse response!</string>
     <string name="sms_message_sent">Message Sent</string>
-    <string name="insufficnet_premissions">Insufficent premissions</string>
+    <string name="content_picture_if_available">Content picture if available</string>
+
 
 </resources>

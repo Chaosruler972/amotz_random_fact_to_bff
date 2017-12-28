@@ -5,6 +5,7 @@ package zeev.sagi.android.ex3.fragments
 
 
 
+import android.Manifest
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.telephony.SmsManager
@@ -20,6 +21,7 @@ import org.json.JSONObject
 import zeev.sagi.android.ex3.MainActivity
 import zeev.sagi.android.ex3.R
 import zeev.sagi.android.ex3.dataclass.quote
+import zeev.sagi.android.ex3.global_stuff.fragment_helper
 
 
 /**
@@ -107,8 +109,10 @@ class quote_fragment : Fragment() {
 
 
     @Suppress("unused")
-    fun sendSMS(phoneNo: String, msg: String)
+    private fun sendSMS(phoneNo: String, msg: String)
     {
+        if(!fragment_helper.check_premission(Manifest.permission.SEND_SMS,context))
+            return
         try
         {
             val smsManager = SmsManager.getDefault()
