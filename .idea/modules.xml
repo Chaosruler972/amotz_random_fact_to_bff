@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/amotz_random_fact_to_bff.iml" filepath="$PROJECT_DIR$/amotz_random_fact_to_bff.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ex3.iml" filepath="$PROJECT_DIR$/ex3.iml" />
     </modules>
   </component>
 </project>

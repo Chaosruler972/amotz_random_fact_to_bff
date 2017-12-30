@@ -5,10 +5,12 @@ package zeev.sagi.android.ex3
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
-import zeev.sagi.android.ex3.data_structure_max_heap.BinaryHeap
+import zeev.sagi.android.ex3.data_structure_max_heap.MaxHeap
 import zeev.sagi.android.ex3.dataclass.contact
 import zeev.sagi.android.ex3.global_stuff.fragment_helper
+import java.util.*
 
 
 @Suppress("LocalVariableName")
@@ -30,7 +32,10 @@ class bff_finder {
 
         val cursor = context.contentResolver.query(
                 android.provider.CallLog.Calls.CONTENT_URI, null, null, null, null)
-        val heap = BinaryHeap(cursor.count)
+        val vector:Vector<contact?> = Vector()
+        vector.setSize(cursor.count)
+        val heap = MaxHeap(vector.toTypedArray())
+        Log.d("Call logs","Count = ${cursor.count}")
         while(cursor.moveToNext())
         {
             val number_column = cursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER)

@@ -43,9 +43,13 @@ class bff_fragment : Fragment()
                 if (result != null)
                     Log.d("Bff", result.toString())
                 else
+                {
                     Log.d("Bff", "null")
+                    return@Thread
+                }
                 MainActivity.bff = result
                 MainActivity.act.runOnUiThread {
+                    @Suppress("SENSELESS_COMPARISON")
                     if(result!=null)
                     {
                         bff_name.text = result.toString()

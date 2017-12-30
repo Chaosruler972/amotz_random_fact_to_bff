@@ -4,18 +4,29 @@ package zeev.sagi.android.ex3.dataclass
 
 
 @Suppress("MemberVisibilityCanPrivate")
-class contact(var phone_no:String, var name:String?, var calls:Int)
+class contact(phone:String, var name:String?, var calls:Int)
 {
+    var phone_no:String
+    init {
+        phone_no = phone.replace("+972","0").replace(" ","").replace("-","")
+    }
     operator fun inc():contact
     {
         this.calls++
         return this
     }
 
-    fun equals(other: contact): Boolean = (this.phone_no == other.phone_no)
-
-    operator fun compareTo(other: contact):Int
+    fun equals(other: contact?): Boolean
     {
+        if(other==null)
+            return false
+        return (this.phone_no == other.phone_no)
+    }
+
+    operator fun compareTo(other: contact?):Int
+    {
+        if(other == null)
+            return 1
         @Suppress("CascadeIf")
         return if(this.calls > other.calls)
             1
