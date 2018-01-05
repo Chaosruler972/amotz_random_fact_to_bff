@@ -5,6 +5,7 @@ package zeev.sagi.android.ex3
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import zeev.sagi.android.ex3.data_structure_max_heap.MaxHeap
@@ -19,6 +20,7 @@ class bff_finder {
     @Suppress("FunctionName")
     fun compute_bff(context: Context):contact?
     {
+        Looper.prepare()
         @Suppress("CanBeVal")
         var return_value:contact? = null
         if(!fragment_helper.check_premission(Manifest.permission.READ_CALL_LOG,context)
@@ -29,13 +31,14 @@ class bff_finder {
             return return_value
         }
 
-
+        Log.d("Bff","Got pass the permission check stage")
         val cursor = context.contentResolver.query(
                 android.provider.CallLog.Calls.CONTENT_URI, null, null, null, null)
         val vector:Vector<contact?> = Vector()
         vector.setSize(cursor.count)
+        Log.d("Bff","Went through the SQLite stage, size is ${cursor.count}")
         val heap = MaxHeap(vector.toTypedArray())
-        Log.d("Call logs","Count = ${cursor.count}")
+        Log.d("Bff","Built heap")
         while(cursor.moveToNext())
         {
             val number_column = cursor.getColumnIndex(android.provider.CallLog.Calls.NUMBER)
@@ -48,7 +51,9 @@ class bff_finder {
                     1
             )
             heap.insert(cont)
+            Log.d("Bff","Iterated again")
         }
+        Log.d("Bff","Done")
         cursor.close()
         return_value = heap.findMax()
         return return_value

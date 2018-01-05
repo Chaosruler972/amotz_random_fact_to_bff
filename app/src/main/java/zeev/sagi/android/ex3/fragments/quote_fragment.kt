@@ -57,6 +57,7 @@ class quote_fragment : Fragment() {
                         Log.d("Quote fragment","response code is ${response.statusCode}")
                         Log.d("Quote fragment", "Result is ${result.get()}")
                         Toast.makeText(context,getString(R.string.URL_response_not_200),Toast.LENGTH_SHORT).show()
+                        quote_text.text = getString(R.string.URL_response_not_200)
                         quote_generate.isEnabled = true
                         quote_progressbar.visibility = ProgressBar.GONE
                         quote_send_to_bff.isEnabled = false
@@ -79,6 +80,7 @@ class quote_fragment : Fragment() {
                     MainActivity.act.runOnUiThread {
                         Log.d("Quote fragment","response is ${String(response.data)}")
                         Toast.makeText(context,getString(R.string.parsing_error),Toast.LENGTH_SHORT).show()
+                        quote_text.text = getString(R.string.parsing_error)
                         quote_generate.isEnabled = true
                         quote_progressbar.visibility = ProgressBar.GONE
                         quote_send_to_bff.isEnabled = false
@@ -102,17 +104,19 @@ class quote_fragment : Fragment() {
         quote_send_to_bff.setOnClickListener {
             val con = MainActivity.bff
             if(con!=null)
-                sendSMS(con.phone_no,"Did you know that ${quote.text}? ${quote.author} said that about the category of ${quote.category}")
+                sendSMS(con.phone_no, getString(R.string.sms_txt_before_quote) + quote.text + "? " + quote.author + getString(R.string.sms_text_after_quote) + quote.category)
         }
 
     }
 
 
     @Suppress("unused")
-    private fun sendSMS(phoneNo: String, msg: String)
-    {
-        if(!fragment_helper.check_premission(Manifest.permission.SEND_SMS,context))
+    private fun sendSMS(phoneNo: String, msg: String) {
+        if (!fragment_helper.check_premission(Manifest.permission.SEND_SMS, context))
+        {
+            Toast.makeText(MainActivity.act,getString(R.string.sms_permission_failed),Toast.LENGTH_SHORT).show()
             return
+        }
         try
         {
             val smsManager = SmsManager.getDefault()
@@ -122,8 +126,8 @@ class quote_fragment : Fragment() {
         }
         catch (ex: Exception)
         {
-            Toast.makeText(context, ex.message.toString(),
-                    Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.something_went_wrong_sms),
+                    Toast.LENGTH_SHORT).show()
             ex.printStackTrace()
         }
 

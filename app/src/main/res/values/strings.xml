@@ -7,27 +7,16 @@
     <string name="tab_text_2">Random quote</string>
     <string name="insufficnet_premissions">Insufficent premissions</string>
 
-    <!-- quote handling URL and data -->
-    <string name="random_quote_url">https://talaikis.com/api/quotes/random/</string>
-    <string name="json_author">author</string>
-    <string name="json_text">quote</string>
-    <string name="json_category">cat</string>
-
-
-    <!-- permissions -->
-    <integer name="premission_request_code">750</integer>
-
-
     <!-- BFF fragment -->
     <string name="find_bff">Find BFF</string>
 
     <!-- Quote fragment -->
-    <string name="generate_new_quote">Generate new quote</string>
+
     <string name="send_to_bff">Send to Bff</string>
-    <string name="URL_response_not_200">Unable to get response from URL</string>
-    <string name="parsing_error">Unable to parse response!</string>
-    <string name="sms_message_sent">Message Sent</string>
+
     <string name="content_picture_if_available">Content picture if available</string>
+
+
 
 
 </resources>

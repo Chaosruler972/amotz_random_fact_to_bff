@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="permission_read_call_log_and_contacts_failed"><![CDATA[Getting permission to read call logs & contacts failed… check them both]]></string>
+    <string name="sms_permission_failed">Unable to send sms, no permission granted</string>
+    <string name="permission_denied">Permission denied? Why? Why would you do this?!?!</string>
+    <integer name="premission_request_code">750</integer>
+</resources>

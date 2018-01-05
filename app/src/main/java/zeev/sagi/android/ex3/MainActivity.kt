@@ -1,18 +1,19 @@
 package zeev.sagi.android.ex3
 
 import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import zeev.sagi.android.ex3.dataclass.contact
 import zeev.sagi.android.ex3.fragments.bff_fragment
 import zeev.sagi.android.ex3.fragments.quote_fragment
-import java.util.*
 import zeev.sagi.android.ex3.global_stuff.fragment_helper
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,8 +51,17 @@ class MainActivity : AppCompatActivity() {
 
         if(!fragment_helper.check_premissions(premission_array,baseContext))
             fragment_helper.request_premissions(this,premission_array)
+        else
+            continue_init_mechanism()
 
 
+
+
+    }
+
+    @Suppress("FunctionName")
+    private fun continue_init_mechanism()
+    {
         setSupportActionBar(toolbar)
         /*
         hides top action bar for visibility
@@ -67,11 +77,47 @@ class MainActivity : AppCompatActivity() {
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-
-
-
     }
 
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray)
+    {
+        when (requestCode)
+        {
+            act.resources.getInteger(R.integer.premission_request_code) ->
+            {
+
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                //restart_app()
+                continue_init_mechanism()
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+            }
+            else
+            {
+
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+                //Toast.makeText(this@MainActivity, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show()
+                //finish()
+            }
+            return
+            }
+        }// other 'case' lines to check for other
+        // permissions this app might request
+    }
+
+    /*
+          restarts entire app after style change
+*/
+    /*
+    private fun restart_app()
+    {
+        startActivity(Intent(this.baseContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+    }
+*/
     /*
         inits entire premission array
      */

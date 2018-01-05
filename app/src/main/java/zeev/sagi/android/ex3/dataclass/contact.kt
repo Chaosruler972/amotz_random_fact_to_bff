@@ -6,10 +6,8 @@ package zeev.sagi.android.ex3.dataclass
 @Suppress("MemberVisibilityCanPrivate")
 class contact(phone:String, var name:String?, var calls:Int)
 {
-    var phone_no:String
-    init {
-        phone_no = phone.replace("+972","0").replace(" ","").replace("-","")
-    }
+    @Suppress("PropertyName")
+    var phone_no:String = phone.replace("+972","0").replace(" ","").replace("-","")
     operator fun inc():contact
     {
         this.calls++

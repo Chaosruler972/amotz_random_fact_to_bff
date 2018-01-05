@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="something_went_wrong_sms">Something went wrong on SMS sending</string>
+    <string name="sms_message_sent">Message Sent</string>
+
+    <string name="sms_txt_before_quote">Did you know that</string>
+    <string name="sms_text_after_quote">said that about the category of</string>
+</resources>

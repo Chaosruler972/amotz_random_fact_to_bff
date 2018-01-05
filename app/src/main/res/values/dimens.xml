@@ -5,4 +5,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="margin_right_quote_author">20dp</dimen>
+    <dimen name="fragment_bff_margin_progressbar">8dp</dimen>
+    <dimen name="quote_text_size">18sp</dimen>
 </resources>

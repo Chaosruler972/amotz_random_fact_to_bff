@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="generate_new_quote">Generate new quote</string>
+    <string name="URL_response_not_200">Unable to get response from URL</string>
+    <string name="parsing_error">Unable to parse response!</string>
+    <string name="couldnt_find_call_logs">Couldn\'t find any call logs</string>
+
+
+
+    <!-- quote handling URL and data -->
+    <string name="random_quote_url">https://talaikis.com/api/quotes/random/</string>
+    <string name="json_author">author</string>
+    <string name="json_text">quote</string>
+    <string name="json_category">cat</string>
+</resources>

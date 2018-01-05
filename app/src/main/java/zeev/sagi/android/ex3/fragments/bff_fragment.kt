@@ -4,6 +4,7 @@ package zeev.sagi.android.ex3.fragments
 
 
 
+import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,11 +14,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_bff.*
 import zeev.sagi.android.ex3.MainActivity
 import zeev.sagi.android.ex3.R
 import zeev.sagi.android.ex3.bff_finder
-
 import zeev.sagi.android.ex3.global_stuff.fragment_helper
 
 
@@ -33,7 +34,13 @@ class bff_fragment : Fragment()
     override fun onActivityCreated(savedInstanceState: Bundle?)
     {
         super.onActivityCreated(savedInstanceState)
-
+        if (!fragment_helper.check_premission(Manifest.permission.READ_CALL_LOG, context) ||
+                !fragment_helper.check_premission(Manifest.permission.READ_CONTACTS, context))
+        {
+            Toast.makeText(MainActivity.act,getString(R.string.permission_read_call_log_and_contacts_failed), Toast.LENGTH_SHORT).show()
+            bff_name.text = getString(R.string.permission_read_call_log_and_contacts_failed)
+            return
+        }
         bff_find.setOnClickListener {
             bff_find.isEnabled = false
             bff_progressbar.visibility = ProgressBar.VISIBLE
@@ -44,7 +51,11 @@ class bff_fragment : Fragment()
                     Log.d("Bff", result.toString())
                 else
                 {
-                    Log.d("Bff", "null")
+                    Log.d("Bff", "Got nothing")
+                    MainActivity.act.runOnUiThread {
+                        bff_name.text = getString(R.string.couldnt_find_call_logs)
+                    }
+                    bff_progressbar.visibility = ProgressBar.INVISIBLE
                     return@Thread
                 }
                 MainActivity.bff = result
